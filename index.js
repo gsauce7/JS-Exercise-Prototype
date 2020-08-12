@@ -48,22 +48,20 @@ function Person(name, age) {
 
 
 Person.prototype.eat = function (someFood) {
-  if (this.stomach.length > 10) {
-    return "I am too full";
-  }
+  if (this.stomach.length < 10) {
   this.stomach.push(someFood);
+  }
 }
 Person.prototype.poop = function () {
   this.stomach = [];
 }
 
-Person.prototype.toString(this.name, this.age) => `${this.name} is ${this.age}!`
 
-/* 
+ 
 Person.prototype.toString = function() {
   return `${this.name}, ${this.age}`;
 };
-*/
+
 
 /*
   TASK 2
@@ -86,8 +84,8 @@ function Car(model, milesPerGallon) {
   this.odometer = 0;
 }
 
-Car.prototype.fill = function(gallons) = {
-  this.tank = this.tank += gallons;
+Car.prototype.fill = function(gallons) {
+  this.tank += gallons;
 }
 
 Car.prototype.drive = function(distance) {

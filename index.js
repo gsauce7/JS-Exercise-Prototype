@@ -129,7 +129,7 @@ function Baby(name, age, favoriteToy) {
 
 Baby.prototype = Object.create(Person.prototype)
 Baby.prototype.play = function() {
-    return `Playing with ${this.favoriteToy}, ${this.favoriteToy} being the favorite toy.`;
+    return `Playing with ${this.favoriteToy}`;
 }
 
 /* 

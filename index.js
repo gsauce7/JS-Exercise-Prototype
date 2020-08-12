@@ -20,6 +20,7 @@ Airplane.prototype.land = function () {
 };
 
 
+
 /*
 // 👇 COMPLETE YOUR WORK BELOW 👇
 // 👇 COMPLETE YOUR WORK BELOW 👇
@@ -55,7 +56,7 @@ Person.prototype.poop = function () {
   this.stomach = [];
 }
 
-Person.prototype.toString(name, age) => `${name} is ${age}!`
+Person.prototype.toString(this.name, this.age) => `${this.name} is ${this.age}!`
 
 /*
   TASK 2
@@ -83,12 +84,30 @@ Car.prototype.fill = function(gallons) = {
 }
 
 Car.prototype.drive = function(distance) {
-  this.odometer = this.odometer += distance;
-  this.tank = this.tank -= distance / this.milesPerGallon;
-  if (odometer = 0) {
-    return `I ran out of fuel at ${this.odometer} miles!`
+  if (this.tank - distance / this.milesPerGallon <= 0) {
+
+    for (let i = distance; i > 0; i--) {
+
+      if (this.tank - i / this.milesPerGallon === 0) {
+
+        this.odometer += i;
+        this.tank = 0;
+
+        return `I ran out of fuel at ${this.odometer} miles!`;
+
+      }
+    }
+  } else {
+
+    this.tank -= distance / this.milesPerGallon;
+    this.odometer += distance;
+
   }
-}
+};
+
+
+
+
 /*
   TASK 3
     - Write a Baby constructor subclassing Person.
@@ -97,17 +116,24 @@ Car.prototype.drive = function(distance) {
         + Should return a string "Playing with x", x being the favorite toy.
 */
 function Baby() {
-  
-}
 
+  function Baby(name, age, favoriteToy) {
+    Person.call(this, name, age);
+    this.favoriteToy = favoriteToy;
+  }
+  Baby.prototype = Object.create(Person.prototype)
+  Baby.prototype.play = function() {
+    return `Playing with ${this.favoriteToy}, ${this.favoriteToy} being the favorite toy.`;
+  }
+}
 /* 
   TASK 4
 
   In your own words explain the four principles for the "this" keyword below:
-  1. 
-  2. 
-  3. 
-  4. 
+  1. Window Binding /global: this refers to the window object (no declared object)
+  2. Implicit Binding: refers to declared object 
+  3. 'new' Binding: 'new' operator with constructor
+  4. Explicit-this refers to what is being called by .call or .apply
 */
 
 
